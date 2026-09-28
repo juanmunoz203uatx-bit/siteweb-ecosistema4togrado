@@ -1,0 +1,2403 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🌎 Exploradores de los Ecosistemas</title>
+
+<style>
+
+/* =====================================================
+   COLORES PRINCIPALES
+===================================================== */
+
+:root{
+    --lime:#b7ff00;
+    --lime2:#d7ff4f;
+    --green:#087a3d;
+    --dark:#123c28;
+    --white:#ffffff;
+    --sky:#bff4ff;
+    --yellow:#ffe600;
+    --orange:#ff9d00;
+}
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:
+    radial-gradient(circle at top left,#d9ff6b 0%,transparent 25%),
+    linear-gradient(135deg,#efffc5,#caffdc,#c9f7ff);
+    color:var(--dark);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-18px);
+    }
+}
+
+@keyframes walk{
+    0%{
+        transform:translateX(-20px) rotate(-3deg);
+    }
+    50%{
+        transform:translateX(20px) rotate(3deg);
+    }
+    100%{
+        transform:translateX(-20px) rotate(-3deg);
+    }
+}
+
+@keyframes swim{
+    0%,100%{
+        transform:translateX(-15px) rotate(-3deg);
+    }
+    50%{
+        transform:translateX(15px) rotate(3deg);
+    }
+}
+
+@keyframes fly{
+    0%,100%{
+        transform:translate(-20px,-5px) rotate(-5deg);
+    }
+    50%{
+        transform:translate(25px,-30px) rotate(5deg);
+    }
+}
+
+@keyframes jump{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-35px);
+    }
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+@keyframes sparkle{
+    0%{
+        transform:scale(0) rotate(0);
+        opacity:0;
+    }
+    50%{
+        transform:scale(1.3) rotate(180deg);
+        opacity:1;
+    }
+    100%{
+        transform:scale(0) rotate(360deg);
+        opacity:0;
+    }
+}
+
+@keyframes cloud{
+    0%{
+        transform:translateX(-40px);
+    }
+    50%{
+        transform:translateX(40px);
+    }
+    100%{
+        transform:translateX(-40px);
+    }
+}
+
+/* =====================================================
+   PANTALLAS
+===================================================== */
+
+.screen{
+    display:none;
+    min-height:100vh;
+    padding:25px;
+}
+
+.screen.active{
+    display:flex;
+    flex-direction:column;
+}
+
+.container{
+    width:min(1150px,100%);
+    margin:auto;
+}
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.main-btn{
+    border:none;
+    background:var(--lime);
+    color:#173500;
+    padding:16px 30px;
+    border-radius:50px;
+    font-size:18px;
+    font-weight:900;
+    box-shadow:
+        0 8px 0 #75a900,
+        0 15px 30px rgba(0,0,0,.18);
+    transition:.2s;
+}
+
+.main-btn:hover{
+    transform:translateY(-4px) scale(1.03);
+}
+
+.main-btn:active{
+    transform:translateY(3px);
+    box-shadow:0 3px 0 #75a900;
+}
+
+.back-btn{
+    border:none;
+    background:white;
+    color:var(--green);
+    padding:11px 18px;
+    border-radius:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+/* =====================================================
+   PORTADA
+===================================================== */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-card{
+    width:min(1050px,100%);
+    min-height:650px;
+    padding:45px 30px;
+    border-radius:45px;
+    background:
+        linear-gradient(
+            rgba(255,255,255,.88),
+            rgba(255,255,255,.96)
+        );
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.18);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.sun{
+    position:absolute;
+    width:150px;
+    height:150px;
+    background:#ffe000;
+    border-radius:50%;
+    right:50px;
+    top:40px;
+    box-shadow:0 0 50px #ffe000;
+}
+
+.cloud{
+    position:absolute;
+    font-size:65px;
+    animation:cloud 8s ease-in-out infinite;
+    opacity:.85;
+}
+
+.cloud.one{
+    left:30px;
+    top:70px;
+}
+
+.cloud.two{
+    right:170px;
+    top:170px;
+    animation-delay:2s;
+}
+
+.earth{
+    font-size:100px;
+    animation:float 3s ease-in-out infinite;
+    position:relative;
+    z-index:3;
+    margin-top:45px;
+}
+
+.hero h1{
+    font-size:clamp(40px,7vw,78px);
+    color:var(--green);
+    margin:10px 0;
+    text-shadow:
+        3px 3px 0 var(--lime);
+    position:relative;
+    z-index:3;
+}
+
+.hero p{
+    font-size:23px;
+    color:#506b5b;
+    max-width:700px;
+    margin:0 auto 35px;
+    position:relative;
+    z-index:3;
+}
+
+.hero-animals{
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    margin:30px 0;
+    font-size:65px;
+    position:relative;
+    z-index:3;
+}
+
+.hero-animals span:nth-child(1){
+    animation:walk 3s infinite;
+}
+
+.hero-animals span:nth-child(2){
+    animation:jump 2s infinite;
+}
+
+.hero-animals span:nth-child(3){
+    animation:fly 4s infinite;
+}
+
+.hero-animals span:nth-child(4){
+    animation:swim 3s infinite;
+}
+
+/* =====================================================
+   TÍTULOS
+===================================================== */
+
+.page-title{
+    text-align:center;
+    color:var(--green);
+    font-size:clamp(32px,5vw,48px);
+    margin-bottom:8px;
+    text-shadow:2px 2px 0 var(--lime2);
+}
+
+.page-subtitle{
+    text-align:center;
+    color:#536c5c;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro-hero{
+    background:white;
+    border-radius:35px;
+    overflow:hidden;
+    box-shadow:0 15px 45px rgba(0,0,0,.12);
+    margin-bottom:30px;
+}
+
+.intro-image{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    display:block;
+}
+
+.intro-text{
+    padding:30px;
+}
+
+.intro-text h2{
+    color:var(--green);
+    margin-bottom:12px;
+    font-size:30px;
+}
+
+.intro-text p{
+    line-height:1.8;
+    font-size:18px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.info-card{
+    background:white;
+    padding:25px;
+    border-radius:28px;
+    box-shadow:0 10px 30px rgba(0,0,0,.10);
+    transition:.3s;
+    overflow:hidden;
+}
+
+.info-card:hover{
+    transform:translateY(-8px) rotate(-1deg);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.info-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:20px;
+    margin-bottom:15px;
+}
+
+.info-icon{
+    font-size:50px;
+}
+
+.info-card h3{
+    color:var(--green);
+    margin:8px 0;
+}
+
+.info-card p{
+    line-height:1.6;
+    color:#5a6d62;
+}
+
+/* =====================================================
+   EXPLORACIÓN
+===================================================== */
+
+.explorer{
+    margin-top:30px;
+    background:#faffef;
+    border:4px solid var(--lime);
+    border-radius:35px;
+    padding:30px;
+    box-shadow:0 12px 35px rgba(0,0,0,.1);
+}
+
+.ecosystem-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin:20px 0;
+}
+
+.eco-btn{
+    border:3px solid var(--green);
+    background:white;
+    color:var(--green);
+    padding:13px 20px;
+    border-radius:40px;
+    font-size:17px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.eco-btn:hover,
+.eco-btn.selected{
+    background:var(--lime);
+    transform:scale(1.06);
+}
+
+.eco-display{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    background:white;
+    padding:20px;
+    border-radius:25px;
+}
+
+.eco-display img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:20px;
+}
+
+.eco-description{
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.eco-description h2{
+    color:var(--green);
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.eco-description p{
+    line-height:1.7;
+    font-size:17px;
+}
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
+.video-section{
+    background:white;
+    padding:30px;
+    border-radius:35px;
+    margin-top:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.video-section h2{
+    text-align:center;
+    color:var(--green);
+    margin-bottom:20px;
+}
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+}
+
+.video{
+    aspect-ratio:16/9;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+.video iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+/* =====================================================
+   QR
+===================================================== */
+
+.qr-box{
+    width:min(650px,100%);
+    margin:auto;
+    background:white;
+    border-radius:35px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 20px 55px rgba(0,0,0,.14);
+    border:5px solid var(--lime);
+}
+
+.qr-title{
+    color:var(--green);
+    font-size:35px;
+}
+
+#qrcode{
+    margin:25px auto;
+    display:flex;
+    justify-content:center;
+}
+
+.url-box{
+    padding:12px;
+    background:#f2ffd7;
+    border-radius:15px;
+    word-break:break-all;
+    font-size:13px;
+}
+
+/* =====================================================
+   REGISTRO
+===================================================== */
+
+.register-box{
+    width:min(550px,100%);
+    margin:auto;
+    background:white;
+    padding:45px;
+    border-radius:35px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.14);
+    border:5px solid var(--lime);
+}
+
+.register-animal{
+    font-size:90px;
+    animation:jump 2s infinite;
+}
+
+.input{
+    width:100%;
+    border:3px solid #d8e8d8;
+    padding:16px;
+    border-radius:18px;
+    margin:20px 0;
+    font-size:18px;
+    outline:none;
+}
+
+.input:focus{
+    border-color:var(--lime);
+}
+
+.error{
+    min-height:25px;
+    color:#c53232;
+}
+
+/* =====================================================
+   MAPA
+===================================================== */
+
+.player-bar{
+    background:white;
+    padding:18px 25px;
+    border-radius:25px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,.1);
+    margin-bottom:25px;
+    border-left:8px solid var(--lime);
+}
+
+.points{
+    color:var(--green);
+    font-weight:900;
+    font-size:22px;
+}
+
+.map{
+    background:
+        linear-gradient(
+            rgba(255,255,255,.9),
+            rgba(244,255,218,.94)
+        );
+    padding:35px;
+    border-radius:40px;
+    box-shadow:0 15px 45px rgba(0,0,0,.12);
+}
+
+.map-world{
+    font-size:100px;
+    text-align:center;
+    animation:float 4s infinite;
+    margin-bottom:20px;
+}
+
+.missions{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.mission{
+    background:white;
+    border:4px solid var(--lime);
+    border-radius:30px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.mission:hover{
+    transform:translateY(-8px) scale(1.02);
+}
+
+.mission-icon{
+    font-size:65px;
+    display:inline-block;
+}
+
+.mission:nth-child(1) .mission-icon{
+    animation:walk 3s infinite;
+}
+
+.mission:nth-child(2) .mission-icon{
+    animation:fly 3s infinite;
+}
+
+.mission:nth-child(3) .mission-icon{
+    animation:jump 2s infinite;
+}
+
+.mission:nth-child(4) .mission-icon{
+    animation:swim 3s infinite;
+}
+
+.mission h3{
+    color:var(--green);
+    margin:10px 0;
+}
+
+.mission button{
+    border:none;
+    background:var(--lime);
+    color:#183500;
+    padding:12px 20px;
+    border-radius:25px;
+    font-weight:900;
+}
+
+.mission.locked{
+    opacity:.45;
+    filter:grayscale(.5);
+}
+
+.mission.locked button{
+    background:#aaa;
+}
+
+/* =====================================================
+   JUEGO
+===================================================== */
+
+.game-box{
+    width:min(850px,100%);
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:35px;
+    box-shadow:0 20px 55px rgba(0,0,0,.15);
+    border:5px solid var(--lime);
+}
+
+.progress{
+    height:15px;
+    background:#e9eedf;
+    border-radius:30px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:
+        linear-gradient(
+            90deg,
+            var(--lime),
+            #62e000
+        );
+    transition:.4s;
+}
+
+.question-number{
+    color:var(--green);
+    font-weight:900;
+}
+
+.question{
+    font-size:28px;
+    font-weight:900;
+    line-height:1.4;
+    margin:15px 0 25px;
+}
+
+.options{
+    display:grid;
+    gap:14px;
+}
+
+.option{
+    border:3px solid #dcebd9;
+    background:#fbfff7;
+    padding:17px;
+    border-radius:18px;
+    font-size:17px;
+    text-align:left;
+    transition:.2s;
+}
+
+.option:hover{
+    background:#efffc5;
+    border-color:var(--lime);
+    transform:translateX(5px);
+}
+
+.option.correct{
+    background:#cfff75;
+    border-color:#64a600;
+}
+
+.option.wrong{
+    background:#ffd3d3;
+    border-color:#d13c3c;
+}
+
+.feedback{
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    border-radius:20px;
+    font-weight:bold;
+    line-height:1.5;
+}
+
+.feedback.show{
+    display:block;
+}
+
+.next-btn{
+    display:none;
+    border:none;
+    background:var(--yellow);
+    padding:14px 25px;
+    border-radius:30px;
+    font-weight:900;
+    margin:20px auto 0;
+}
+
+/* =====================================================
+   RESULTADO
+===================================================== */
+
+.result-card{
+    width:min(700px,100%);
+    margin:auto;
+    background:white;
+    border-radius:40px;
+    padding:45px 30px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.15);
+    border:6px solid var(--lime);
+}
+
+.trophy{
+    font-size:100px;
+    animation:pulse 1.5s infinite;
+}
+
+.final-score{
+    font-size:80px;
+    font-weight:900;
+    color:var(--green);
+    text-shadow:3px 3px var(--lime);
+    margin:15px;
+}
+
+.badge{
+    font-size:85px;
+    margin:15px;
+    animation:float 2s infinite;
+}
+
+.badge-title{
+    color:var(--green);
+    font-size:27px;
+    font-weight:900;
+}
+
+.final-message{
+    max-width:520px;
+    margin:20px auto;
+    line-height:1.7;
+    color:#5c6f62;
+}
+
+/* =====================================================
+   ESTRELLAS
+===================================================== */
+
+.star{
+    position:fixed;
+    font-size:30px;
+    pointer-events:none;
+    animation:sparkle 1s forwards;
+    z-index:9999;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:700px){
+
+    .screen{
+        padding:14px;
+    }
+
+    .hero-card{
+        min-height:600px;
+        padding:30px 18px;
+    }
+
+    .earth{
+        font-size:75px;
+    }
+
+    .hero-animals{
+        font-size:48px;
+        gap:15px;
+    }
+
+    .eco-display{
+        grid-template-columns:1fr;
+    }
+
+    .eco-display img{
+        height:220px;
+    }
+
+    .register-box,
+    .qr-box{
+        padding:28px 20px;
+    }
+
+    .game-box{
+        padding:22px;
+    }
+
+    .question{
+        font-size:22px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PORTADA
+===================================================== -->
+
+<section id="home" class="screen active">
+
+<div class="hero">
+
+<div class="hero-card">
+
+<div class="sun"></div>
+
+<div class="cloud one">☁️</div>
+<div class="cloud two">☁️</div>
+
+<div class="earth">🌎</div>
+
+<h1>
+EXPLORADORES<br>
+DE LOS ECOSISTEMAS
+</h1>
+
+<p>
+🌱 Una aventura donde aprenderás sobre animales,
+clima, plantas y los increíbles lugares de nuestro planeta.
+</p>
+
+<div class="hero-animals">
+<span>🦁</span>
+<span>🐸</span>
+<span>🦅</span>
+<span>🐬</span>
+</div>
+
+<button class="main-btn" onclick="showScreen('intro')">
+🚀 ¡ENTRAR A LA AVENTURA!
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRODUCCIÓN
+===================================================== -->
+
+<section id="intro" class="screen">
+
+<div class="container">
+
+<button class="back-btn" onclick="showScreen('home')">
+← Regresar
+</button>
+
+<h2 class="page-title">
+🌎 ¡Comienza la exploración!
+</h2>
+
+<p class="page-subtitle">
+Antes de jugar, descubre qué hace especial a cada ecosistema.
+</p>
+
+
+<div class="intro-hero">
+
+<img
+class="intro-image"
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Tropical_rain_forest.jpg"
+alt="Bosque tropical"
+>
+
+<div class="intro-text">
+
+<h2>
+🌱 ¿Qué es un ecosistema?
+</h2>
+
+<p>
+Un ecosistema es un espacio donde los seres vivos se
+relacionan entre sí y también con elementos no vivos
+como el agua, el aire, el suelo, la luz y la temperatura.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="cards">
+
+<div class="info-card">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aerial_View_of_Sunset_over_Forest_Slope.jpg"
+alt="Bosque"
+>
+
+<div class="info-icon">🌳</div>
+
+<h3>Seres vivos</h3>
+
+<p>
+Animales, plantas y otros organismos forman parte
+de los ecosistemas.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Desert_and_ocean.jpg"
+alt="Desierto y océano"
+>
+
+<div class="info-icon">☀️</div>
+
+<h3>Elementos no vivos</h3>
+
+<p>
+El agua, aire, suelo, luz y temperatura también
+son fundamentales.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Representative_ocean_animal_life.jpg"
+alt="Animales marinos"
+>
+
+<div class="info-icon">🐬</div>
+
+<h3>Los animales</h3>
+
+<p>
+Cada animal tiene características que le permiten
+vivir en determinados ambientes.
+</p>
+
+</div>
+
+
+<div class="info-card">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Amazon_Rainforest_(MODIS_2022-01-05).jpg"
+alt="Amazonas"
+>
+
+<div class="info-icon">🌦️</div>
+
+<h3>El clima</h3>
+
+<p>
+El clima influye en las plantas y animales que
+pueden vivir en un lugar.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     EXPLORA
+===================================================== -->
+
+<div class="explorer">
+
+<h2 style="text-align:center;color:#087a3d;">
+🔎 EXPLORA CADA ECOSISTEMA
+</h2>
+
+<p style="text-align:center;margin-top:8px;">
+¡Presiona un botón y descubre qué encontrarás!
+</p>
+
+
+<div class="ecosystem-buttons">
+
+<button class="eco-btn"
+onclick="showEco('bosque',this)">
+🌳 Bosque
+</button>
+
+<button class="eco-btn"
+onclick="showEco('desierto',this)">
+🏜️ Desierto
+</button>
+
+<button class="eco-btn"
+onclick="showEco('mar',this)">
+🌊 Mar
+</button>
+
+<button class="eco-btn"
+onclick="showEco('selva',this)">
+🌴 Selva
+</button>
+
+<button class="eco-btn"
+onclick="showEco('polar',this)">
+❄️ Polar
+</button>
+
+</div>
+
+
+<div id="ecoDisplay" class="eco-display">
+
+<img
+src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Aerial_View_of_Sunset_over_Forest_Slope.jpg"
+alt="Bosque"
+>
+
+<div class="eco-description">
+
+<h2>🌳 Bosque</h2>
+
+<p>
+Los bosques tienen árboles, plantas, animales,
+agua, suelo y diferentes condiciones climáticas.
+Son hogar de una gran variedad de seres vivos.
+</p>
+
+<br>
+
+<strong>
+🐻 🦌 🐿️ 🦉
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     VIDEOS
+===================================================== -->
+
+<div class="video-section">
+
+<h2>
+🎬 ¡Mira y aprende!
+</h2>
+
+<p style="text-align:center;margin-bottom:20px;">
+Observa estos videos antes de comenzar la misión.
+</p>
+
+<div class="video-grid">
+
+<div class="video">
+
+<iframe
+src="https://www.youtube.com/embed/tPFGdTE_nas"
+title="¿Qué es un ecosistema?"
+allowfullscreen>
+</iframe>
+
+</div>
+
+
+<div class="video">
+
+<iframe
+src="https://www.youtube.com/embed/pcAa6eJWLgg"
+title="Hábitats y ecosistemas"
+allowfullscreen>
+</iframe>
+
+</div>
+
+</div>
+
+</div>
+
+
+<br>
+
+<div style="text-align:center">
+
+<button
+class="main-btn"
+onclick="showScreen('qr')">
+
+📱 ¡LISTO! QUIERO JUGAR
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     QR
+===================================================== -->
+
+<section id="qr" class="screen">
+
+<div class="container">
+
+<button class="back-btn" onclick="showScreen('intro')">
+← Regresar
+</button>
+
+<div class="qr-box">
+
+<div style="font-size:75px;animation:float 2s infinite;">
+📱
+</div>
+
+<h2 class="qr-title">
+¡Entra desde tu celular!
+</h2>
+
+<p style="margin-top:12px;">
+Escanea el código QR para convertirte en explorador.
+</p>
+
+<div id="qrcode"></div>
+
+<div class="url-box" id="currentUrl"></div>
+
+<br>
+
+<button
+class="main-btn"
+onclick="showScreen('register')">
+
+🚀 CONTINUAR
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     REGISTRO
+===================================================== -->
+
+<section id="register" class="screen">
+
+<div class="register-box">
+
+<div class="register-animal">
+🦊
+</div>
+
+<h2 style="color:#087a3d;font-size:32px;">
+¡Crea tu explorador!
+</h2>
+
+<p>
+Elige un apodo para entrar a la aventura.
+</p>
+
+<input
+id="username"
+class="input"
+maxlength="20"
+placeholder="Ejemplo: Jaguar12"
+>
+
+<div id="registerError" class="error"></div>
+
+<button
+class="main-btn"
+onclick="registerPlayer()">
+
+🌎 COMENZAR MISIÓN
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MAPA
+===================================================== -->
+
+<section id="map" class="screen">
+
+<div class="container">
+
+<div class="player-bar">
+
+<div>
+🧑‍🚀
+<strong id="playerName">
+Explorador
+</strong>
+</div>
+
+<div class="points">
+⭐ <span id="score">0</span> puntos
+</div>
+
+</div>
+
+
+<h2 class="page-title">
+🗺️ MAPA DE EXPLORACIÓN
+</h2>
+
+<p class="page-subtitle">
+¡Completa los retos para desbloquear nuevas zonas!
+</p>
+
+
+<div class="map">
+
+<div class="map-world">
+🌎
+</div>
+
+<div class="missions">
+
+
+<div class="mission">
+
+<div class="mission-icon">
+🐾
+</div>
+
+<h3>
+Reto 1
+</h3>
+
+<p>
+¿Quién vive aquí?
+</p>
+
+<br>
+
+<button onclick="startGame(0)">
+🚀 Explorar
+</button>
+
+</div>
+
+
+<div id="mission2" class="mission locked">
+
+<div class="mission-icon">
+🌦️
+</div>
+
+<h3>
+Reto 2
+</h3>
+
+<p>
+Detectives del clima
+</p>
+
+<br>
+
+<button onclick="startGame(1)" disabled>
+🔒 Bloqueado
+</button>
+
+</div>
+
+
+<div id="mission3" class="mission locked">
+
+<div class="mission-icon">
+🌱
+</div>
+
+<h3>
+Reto 3
+</h3>
+
+<p>
+Une las piezas
+</p>
+
+<br>
+
+<button onclick="startGame(2)" disabled>
+🔒 Bloqueado
+</button>
+
+</div>
+
+
+<div id="mission4" class="mission locked">
+
+<div class="mission-icon">
+🌊
+</div>
+
+<h3>
+Reto 4
+</h3>
+
+<p>
+¿Sabes qué falta?
+</p>
+
+<br>
+
+<button onclick="startGame(3)" disabled>
+🔒 Bloqueado
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     JUEGO
+===================================================== -->
+
+<section id="game" class="screen">
+
+<div class="container">
+
+<div class="game-box">
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+
+</div>
+
+
+<div id="questionNumber"
+class="question-number">
+Reto 1 · Pregunta 1
+</div>
+
+
+<div id="question" class="question">
+Pregunta
+</div>
+
+
+<div id="options" class="options">
+</div>
+
+
+<div id="feedback" class="feedback">
+</div>
+
+
+<button
+id="nextBtn"
+class="next-btn"
+onclick="nextQuestion()">
+
+➡️ SIGUIENTE
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     RESULTADO
+===================================================== -->
+
+<section id="result" class="screen">
+
+<div class="result-card">
+
+<div class="trophy">
+🏆
+</div>
+
+<h2 style="font-size:35px;color:#087a3d;">
+¡MISIÓN COMPLETADA!
+</h2>
+
+<p>
+Explorador:
+</p>
+
+<h3
+id="finalName"
+style="font-size:28px;color:#087a3d;">
+Explorador
+</h3>
+
+
+<div class="final-score">
+<span id="finalScore">
+0
+</span>
+</div>
+
+<p>
+PUNTOS OBTENIDOS
+</p>
+
+
+<div id="badge" class="badge">
+🌱
+</div>
+
+
+<div
+id="badgeTitle"
+class="badge-title">
+Explorador principiante
+</div>
+
+
+<p
+id="finalMessage"
+class="final-message">
+¡Sigue explorando nuestro planeta!
+</p>
+
+
+<button
+class="main-btn"
+onclick="showScreen('map')">
+
+🗺️ VOLVER AL MAPA
+
+</button>
+
+<br><br>
+
+<button
+class="back-btn"
+onclick="restartGame()">
+
+🔄 Reiniciar aventura
+
+</button>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   ECOSISTEMAS
+===================================================== */
+
+const ecosystems={
+
+bosque:{
+title:"🌳 Bosque",
+image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Aerial_View_of_Sunset_over_Forest_Slope.jpg",
+text:"Los bosques tienen árboles, plantas, agua y una gran variedad de animales. El clima depende del tipo de bosque.",
+animals:"🐻 🦌 🐿️ 🦉"
+},
+
+desierto:{
+title:"🏜️ Desierto",
+image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Desert_and_ocean.jpg",
+text:"Los desiertos reciben poca lluvia. Algunos animales están adaptados para soportar temperaturas muy altas y poca disponibilidad de agua.",
+animals:"🐫 🦂 🦎 🐍"
+},
+
+mar:{
+title:"🌊 Mar",
+image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Representative_ocean_animal_life.jpg",
+text:"El ecosistema marino está formado principalmente por agua salada y alberga una enorme variedad de organismos.",
+animals:"🐬 🐠 🐙 🐋"
+},
+
+selva:{
+title:"🌴 Selva",
+image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Tropical_rain_forest.jpg",
+text:"Las selvas son cálidas y húmedas y poseen una gran diversidad de plantas y animales.",
+animals:"🐒 🐆 🦜 🐸"
+},
+
+polar:{
+title:"❄️ Zona polar",
+image:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Polar_bear.jpg",
+text:"Las regiones polares presentan temperaturas muy bajas y grandes cantidades de hielo.",
+animals:"🐻‍❄️ 🐧 🦭 🐋"
+}
+
+};
+
+
+/* =====================================================
+   PREGUNTAS
+===================================================== */
+
+const missions=[
+
+[
+{
+q:"🐫 ¿Dónde vive principalmente el camello?",
+options:["🌊 Mar","🏜️ Desierto","❄️ Zona polar","🌳 Bosque"],
+correct:1,
+feedback:"¡Correcto! El camello está adaptado a ambientes desérticos."
+},
+
+{
+q:"🐧 ¿Dónde podemos encontrar pingüinos?",
+options:["🏜️ Desierto","🌴 Selva","❄️ Zona polar","🌳 Bosque"],
+correct:2,
+feedback:"¡Muy bien! Los pingüinos viven en regiones frías."
+},
+
+{
+q:"🐬 ¿Qué animal pertenece al ecosistema marino?",
+options:["🐬 Delfín","🦁 León","🐫 Camello","🦌 Venado"],
+correct:0,
+feedback:"¡Excelente! El delfín es un animal marino."
+}
+],
+
+[
+{
+q:"❄️ ¿Qué clima tiene temperaturas muy bajas y hielo?",
+options:["Cálido","Seco","Frío","Tropical"],
+correct:2,
+feedback:"¡Correcto! Es un clima frío."
+},
+
+{
+q:"🏜️ Un lugar tiene poca lluvia y suelo muy seco. ¿Qué ambiente es?",
+options:["Desértico","Polar","Marino","Tropical"],
+correct:0,
+feedback:"¡Muy bien! Se trata de un ambiente desértico."
+},
+
+{
+q:"🌴 Un lugar es cálido, húmedo y tiene mucha vegetación. ¿Qué es?",
+options:["Polar","Selva","Desierto","Tundra"],
+correct:1,
+feedback:"¡Correcto! Las selvas son cálidas y húmedas."
+}
+],
+
+[
+{
+q:"🐻‍❄️ ¿Cuál relación es correcta?",
+options:[
+"🐻‍❄️ Oso polar → ❄️ Zona polar",
+"🐻‍❄️ Oso polar → 🏜️ Desierto",
+"🐻‍❄️ Oso polar → 🌴 Selva",
+"🐻‍❄️ Oso polar → 🌊 Mar tropical"
+],
+correct:0,
+feedback:"¡Excelente!"
+},
+
+{
+q:"🐒 ¿Dónde podemos encontrar muchos monos?",
+options:[
+"🏜️ Desierto",
+"❄️ Zona polar",
+"🌴 Selva",
+"🌊 Mar"
+],
+correct:2,
+feedback:"¡Correcto! Muchas especies de monos habitan en selvas."
+},
+
+{
+q:"🐠 ¿Dónde debe vivir un pez?",
+options:[
+"🌊 Agua",
+"🏜️ Desierto",
+"🏔️ Montaña seca",
+"🌵 Desierto"
+],
+correct:0,
+feedback:"¡Muy bien! Los peces necesitan un ambiente acuático."
+}
+],
+
+[
+{
+q:"🌳🐦💧☀️ ¿Qué elemento también pertenece al ecosistema?",
+options:[
+"🏢 Edificio",
+"💨 Aire",
+"🚗 Automóvil",
+"📱 Teléfono"
+],
+correct:1,
+feedback:"¡Correcto! El aire es un elemento no vivo del ecosistema."
+},
+
+{
+q:"🌱🐰☀️ ¿Cuál es un ser vivo?",
+options:[
+"☀️ Sol",
+"💧 Agua",
+"🐰 Conejo",
+"🪨 Roca"
+],
+correct:2,
+feedback:"¡Muy bien! El conejo es un ser vivo."
+},
+
+{
+q:"🌎 ¿Por qué debemos cuidar los ecosistemas?",
+options:[
+"Porque los seres vivos dependen de su ambiente.",
+"Porque solo importan los animales.",
+"Porque las plantas no son importantes.",
+"Porque el agua no es necesaria."
+],
+correct:0,
+feedback:"¡Excelente! Los elementos del ecosistema están relacionados."
+}
+]
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let player="";
+let score=0;
+let currentMission=0;
+let currentQuestion=0;
+
+
+/* =====================================================
+   PANTALLAS
+===================================================== */
+
+function showScreen(id){
+
+document.querySelectorAll(".screen").forEach(s=>{
+s.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =====================================================
+   MOSTRAR ECOSISTEMA
+===================================================== */
+
+function showEco(type,button){
+
+document.querySelectorAll(".eco-btn").forEach(b=>{
+b.classList.remove("selected");
+});
+
+button.classList.add("selected");
+
+const eco=ecosystems[type];
+
+document.getElementById("ecoDisplay").innerHTML=`
+
+<img
+src="${eco.image}"
+alt="${eco.title}"
+>
+
+<div class="eco-description">
+
+<h2>${eco.title}</h2>
+
+<p>
+${eco.text}
+</p>
+
+<br>
+
+<div style="font-size:40px;">
+${eco.animals}
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   REGISTRO
+===================================================== */
+
+function registerPlayer(){
+
+const input=document.getElementById("username");
+
+const name=input.value.trim();
+
+if(name.length<2){
+
+document.getElementById("registerError").textContent=
+"⚠️ Escribe un apodo de al menos 2 caracteres.";
+
+return;
+
+}
+
+player=name;
+
+score=0;
+
+localStorage.setItem(
+"ecosystemPlayer",
+player
+);
+
+localStorage.setItem(
+"ecosystemScore",
+score
+);
+
+document.getElementById(
+"playerName"
+).textContent=player;
+
+updateScore();
+
+showScreen("map");
+
+}
+
+
+/* =====================================================
+   PUNTOS
+===================================================== */
+
+function updateScore(){
+
+document.getElementById(
+"score"
+).textContent=score;
+
+localStorage.setItem(
+"ecosystemScore",
+score
+);
+
+
+/* Crear estrellas */
+
+for(let i=0;i<6;i++){
+
+setTimeout(()=>{
+
+const star=document.createElement("div");
+
+star.className="star";
+
+star.textContent="⭐";
+
+star.style.left=
+Math.random()*90+"vw";
+
+star.style.top=
+Math.random()*70+"vh";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+star.remove();
+},1000);
+
+},i*100);
+
+}
+
+}
+
+
+/* =====================================================
+   COMENZAR JUEGO
+===================================================== */
+
+function startGame(index){
+
+currentMission=index;
+
+currentQuestion=0;
+
+showScreen("game");
+
+loadQuestion();
+
+}
+
+
+/* =====================================================
+   CARGAR PREGUNTA
+===================================================== */
+
+function loadQuestion(){
+
+const questions=
+missions[currentMission];
+
+const data=
+questions[currentQuestion];
+
+document.getElementById(
+"questionNumber"
+).textContent=
+`Reto ${currentMission+1} · Pregunta ${currentQuestion+1} de ${questions.length}`;
+
+document.getElementById(
+"question"
+).textContent=data.q;
+
+document.getElementById(
+"progressBar"
+).style.width=
+(currentQuestion/questions.length*100)+"%";
+
+
+const options=
+document.getElementById("options");
+
+options.innerHTML="";
+
+
+data.options.forEach((text,index)=>{
+
+const button=
+document.createElement("button");
+
+button.className="option";
+
+button.textContent=text;
+
+button.onclick=()=>{
+checkAnswer(index,button);
+};
+
+options.appendChild(button);
+
+});
+
+
+const feedback=
+document.getElementById("feedback");
+
+feedback.className="feedback";
+
+feedback.innerHTML="";
+
+document.getElementById(
+"nextBtn"
+).style.display="none";
+
+}
+
+
+/* =====================================================
+   RESPONDER
+===================================================== */
+
+function checkAnswer(selected,button){
+
+const data=
+missions[currentMission][currentQuestion];
+
+const options=
+document.querySelectorAll(".option");
+
+options.forEach(o=>{
+o.disabled=true;
+});
+
+
+if(selected===data.correct){
+
+button.classList.add("correct");
+
+score+=10;
+
+updateScore();
+
+showFeedback(
+"correct",
+"🎉 ¡CORRECTO! +10 puntos<br><br>"+
+data.feedback
+);
+
+}else{
+
+button.classList.add("wrong");
+
+options[data.correct]
+.classList.add("correct");
+
+showFeedback(
+"wrong",
+"🔎 ¡Casi! Observa la respuesta correcta.<br><br>"+
+data.feedback
+);
+
+}
+
+document.getElementById(
+"nextBtn"
+).style.display="block";
+
+}
+
+
+/* =====================================================
+   FEEDBACK
+===================================================== */
+
+function showFeedback(type,text){
+
+const box=
+document.getElementById("feedback");
+
+box.innerHTML=text;
+
+box.className=
+"feedback show";
+
+if(type==="correct"){
+
+box.style.background="#dcff9c";
+box.style.color="#245000";
+
+}else{
+
+box.style.background="#ffe0e0";
+box.style.color="#9b2f2f";
+
+}
+
+}
+
+
+/* =====================================================
+   SIGUIENTE
+===================================================== */
+
+function nextQuestion(){
+
+currentQuestion++;
+
+if(
+currentQuestion>=
+missions[currentMission].length
+){
+
+finishMission();
+
+return;
+
+}
+
+loadQuestion();
+
+}
+
+
+/* =====================================================
+   TERMINAR RETO
+===================================================== */
+
+function finishMission(){
+
+unlockMission(
+currentMission+1
+);
+
+if(currentMission===3){
+
+showFinalResult();
+
+}else{
+
+showScreen("map");
+
+}
+
+}
+
+
+/* =====================================================
+   DESBLOQUEAR
+===================================================== */
+
+function unlockMission(number){
+
+if(number>3)return;
+
+const mission=
+document.getElementById(
+"mission"+(number+1)
+);
+
+if(!mission)return;
+
+mission.classList.remove(
+"locked"
+);
+
+const button=
+mission.querySelector("button");
+
+button.disabled=false;
+
+button.textContent=
+"🚀 Explorar";
+
+}
+
+
+/* =====================================================
+   RESULTADO
+===================================================== */
+
+function showFinalResult(){
+
+document.getElementById(
+"finalName"
+).textContent=player;
+
+document.getElementById(
+"finalScore"
+).textContent=score;
+
+let badge="🌱";
+
+let title="Explorador principiante";
+
+let message=
+"¡Muy buen trabajo! Sigue explorando nuestro planeta.";
+
+if(score>=30){
+
+badge="🐾";
+
+title="Detective de la naturaleza";
+
+message=
+"¡Excelente! Has reconocido diferentes animales y ambientes.";
+
+}
+
+if(score>=70){
+
+badge="🌎";
+
+title="Guardián de los ecosistemas";
+
+message=
+"¡Gran trabajo! Comprendes cómo se relacionan los seres vivos con su ambiente.";
+
+}
+
+if(score>=100){
+
+badge="🏆";
+
+title="Maestro explorador";
+
+message=
+"¡Misión extraordinaria! Has demostrado grandes conocimientos sobre los ecosistemas.";
+
+}
+
+document.getElementById(
+"badge"
+).textContent=badge;
+
+document.getElementById(
+"badgeTitle"
+).textContent=title;
+
+document.getElementById(
+"finalMessage"
+).textContent=message;
+
+showScreen("result");
+
+}
+
+
+/* =====================================================
+   REINICIAR
+===================================================== */
+
+function restartGame(){
+
+player="";
+score=0;
+currentMission=0;
+currentQuestion=0;
+
+localStorage.removeItem(
+"ecosystemPlayer"
+);
+
+localStorage.removeItem(
+"ecosystemScore"
+);
+
+document.querySelectorAll(
+".mission"
+).forEach((m,index)=>{
+
+if(index>0){
+
+m.classList.add("locked");
+
+const b=
+m.querySelector("button");
+
+b.disabled=true;
+
+b.textContent="🔒 Bloqueado";
+
+}
+
+});
+
+document.getElementById(
+"username"
+).value="";
+
+showScreen("register");
+
+}
+
+
+/* =====================================================
+   QR
+===================================================== */
+
+function generateQR(){
+
+const url=
+window.location.href;
+
+document.getElementById(
+"currentUrl"
+).textContent=url;
+
+const qr=
+document.getElementById("qrcode");
+
+qr.innerHTML="";
+
+
+if(url.startsWith("file:")){
+
+qr.innerHTML=`
+
+<div style="
+padding:20px;
+background:#fff7c7;
+border-radius:20px;
+color:#5f5000;
+">
+
+<strong>⚠️ El QR estará disponible
+cuando publiques la página.</strong>
+
+<br><br>
+
+Guarda este archivo en un servidor
+o plataforma web para que los celulares
+puedan entrar desde el código QR.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+const img=
+document.createElement("img");
+
+img.width=230;
+img.height=230;
+
+img.alt=
+"Código QR";
+
+img.src=
+"https://api.qrserver.com/v1/create-qr-code/?size=230x230&data="
++
+encodeURIComponent(url);
+
+qr.appendChild(img);
+
+}
+
+
+/* =====================================================
+   CARGAR DATOS
+===================================================== */
+
+function loadSavedPlayer(){
+
+const saved=
+localStorage.getItem(
+"ecosystemPlayer"
+);
+
+const savedScore=
+localStorage.getItem(
+"ecosystemScore"
+);
+
+if(saved){
+
+player=saved;
+
+score=
+Number(savedScore)||0;
+
+document.getElementById(
+"playerName"
+).textContent=player;
+
+document.getElementById(
+"score"
+).textContent=score;
+
+}
+
+}
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+window.addEventListener(
+"load",
+()=>{
+
+generateQR();
+
+loadSavedPlayer();
+
+});
+
+</script>
+
+</body>
+</html>
+```
